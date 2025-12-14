@@ -202,13 +202,49 @@ window.addEventListener('scroll', () => {
 });
 
 // ========================================
-// Dynamic WhatsApp Message Generator
+// Dynamic WhatsApp Order Handler with Product ID
 // ========================================
-// This function can be enhanced to include product details
-function generateWhatsAppMessage(productName, productPrice) {
-    const message = `Hello! I'm interested in ${productName} (${productPrice})`;
-    return encodeURIComponent(message);
+function handleWhatsAppOrder(productId, productName, productPrice, productImage) {
+    const phoneNumber = '919996124025';
+
+    // Create a detailed message with product ID for easy reference
+    const message = `Hello! I'm interested in ordering:
+
+🆔 *Product ID: ${productId}*
+📦 Product: ${productName}
+💰 Price: ${productPrice}
+
+I saw this product on your website. Please let me know about availability and delivery details. Thank you!
+
+_Note: Please reference Product ID ${productId} for this order_`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 }
+
+// Add event listeners to all WhatsApp order buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const orderButtons = document.querySelectorAll('.whatsapp-order-btn');
+
+    orderButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Get product data from parent product card
+            const productCard = button.closest('.product-card');
+            const productId = productCard.dataset.productId.toUpperCase();
+            const productName = productCard.dataset.productName;
+            const productPrice = productCard.dataset.productPrice;
+            const productImage = productCard.dataset.productImage;
+
+            // Handle the WhatsApp order
+            handleWhatsAppOrder(productId, productName, productPrice, productImage);
+        });
+    });
+});
 
 // ========================================
 // Performance Optimization: Lazy Loading Images

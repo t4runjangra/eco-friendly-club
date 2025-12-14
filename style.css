@@ -12,12 +12,12 @@
     --color-dark-brown: #4A2F1A;
     --color-soft-green: #7FAD87;
     --color-cream: #FFF8F0;
-    
+
     /* Gradients */
     --gradient-earth: linear-gradient(135deg, var(--color-earth-brown) 0%, var(--color-terracotta) 100%);
     --gradient-green: linear-gradient(135deg, var(--color-leaf-green) 0%, var(--color-soft-green) 100%);
     --gradient-overlay: linear-gradient(135deg, rgba(107, 68, 35, 0.85) 0%, rgba(200, 106, 74, 0.85) 100%);
-    
+
     /* Spacing Scale */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
@@ -26,11 +26,11 @@
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
     --spacing-3xl: 4rem;
-    
+
     /* Typography */
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    
+
     /* Border Radius */
     --radius-sm: 4px;
     --radius-md: 8px;
@@ -38,13 +38,13 @@
     --radius-xl: 16px;
     --radius-2xl: 24px;
     --radius-full: 9999px;
-    
+
     /* Shadows */
     --shadow-sm: 0 1px 3px rgba(74, 47, 26, 0.1);
     --shadow-md: 0 4px 12px rgba(74, 47, 26, 0.15);
     --shadow-lg: 0 10px 30px rgba(74, 47, 26, 0.2);
     --shadow-xl: 0 20px 50px rgba(74, 47, 26, 0.25);
-    
+
     /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-base: 0.3s ease;
@@ -108,7 +108,12 @@ ul {
 /* ========================================
    Typography
    ======================================== */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-heading);
     font-weight: 700;
     line-height: 1.2;
@@ -184,6 +189,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-white);
     padding: 0.75rem 1.5rem;
     font-size: 0.95rem;
+    margin-top: auto;
 }
 
 .btn-product:hover {
@@ -328,7 +334,7 @@ h1, h2, h3, h4, h5, h6 {
     .hamburger {
         display: none;
     }
-    
+
     .nav-menu {
         position: static;
         flex-direction: row;
@@ -340,7 +346,7 @@ h1, h2, h3, h4, h5, h6 {
         box-shadow: none;
         gap: var(--spacing-xl);
     }
-    
+
     .nav-link:hover {
         transform: translateY(-2px);
     }
@@ -403,11 +409,11 @@ h1, h2, h3, h4, h5, h6 {
     .hero-title {
         font-size: 3.5rem;
     }
-    
+
     .hero-tagline {
         font-size: 1.4rem;
     }
-    
+
     .cta-buttons {
         flex-direction: row;
         justify-content: center;
@@ -425,12 +431,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateX(-50%) translateY(0);
     }
+
     40% {
         transform: translateX(-50%) translateY(-10px);
     }
+
     60% {
         transform: translateX(-50%) translateY(-5px);
     }
@@ -446,6 +459,7 @@ h1, h2, h3, h4, h5, h6 {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -706,6 +720,61 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.05);
 }
 
+/* Team Section */
+.team-section {
+    margin-top: var(--spacing-3xl);
+}
+
+.team-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .team-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.team-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.team-text .section-title {
+    text-align: left;
+}
+
+.team-text .section-subtitle {
+    text-align: left;
+}
+
+.team-image-container {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+}
+
+.team-image {
+    width: 100%;
+    height: 70vh;
+    display: block;
+    transition: var(--transition-slow);
+}
+
+.team-image-container:hover .team-image {
+    transform: scale(1.05);
+}
+
+.team-description {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-dark-brown);
+}
+
 /* ========================================
    Products Section
    ======================================== */
@@ -745,6 +814,8 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: var(--transition-base);
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card:hover {
@@ -762,7 +833,7 @@ h1, h2, h3, h4, h5, h6 {
 .product-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: var(--transition-slow);
 }
 
@@ -783,8 +854,26 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: var(--shadow-sm);
 }
 
+.product-id-badge {
+    position: absolute;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    background: var(--gradient-earth);
+    color: var(--color-white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-2xl);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-md);
+    border: 2px solid var(--color-white);
+}
+
 .product-info {
     padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .product-name {
@@ -793,11 +882,20 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-dark-brown);
 }
 
+.product-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-dark-brown);
+    opacity: 0.85;
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1;
+}
+
 .product-price {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--color-terracotta);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .products-note {
@@ -868,7 +966,7 @@ h1, h2, h3, h4, h5, h6 {
     .order-steps {
         gap: var(--spacing-2xl);
     }
-    
+
     .step-number {
         width: 70px;
         height: 70px;
@@ -1096,9 +1194,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
     }
+
     50% {
         box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
     }
@@ -1125,7 +1226,7 @@ h1, h2, h3, h4, h5, h6 {
     .section-title {
         font-size: 1.75rem;
     }
-    
+
     .section-subtitle {
         font-size: 1rem;
     }
@@ -1135,6 +1236,7 @@ h1, h2, h3, h4, h5, h6 {
    Print Styles
    ======================================== */
 @media print {
+
     .navbar,
     .sticky-whatsapp,
     .scroll-indicator {
