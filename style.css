@@ -1257,3 +1257,16 @@ h6 {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* ========================================
+   Mobile-Specific Product Image Adjustments
+   ======================================== */
+@media (max-width: 767px) {
+
+    /* Products 2, 3, and 4 should use cover on mobile for better fit */
+    .product-card[data-product-id="EFC-2"] .product-image img,
+    .product-card[data-product-id="EFC-3"] .product-image img,
+    .product-card[data-product-id="EFC-4"] .product-image img {
+        object-fit: cover;
+    }
+}
