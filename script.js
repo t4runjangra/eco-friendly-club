@@ -158,8 +158,8 @@ document.addEventListener('keydown', (e) => {
 // Intersection Observer for Scroll Animations
 // ========================================
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    threshold: 0.05,
+    rootMargin: '0px 0px 0px 0px'  // Removed negative margin for better mobile support
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -179,10 +179,20 @@ sections.forEach(section => {
 
 // Observe all cards for staggered animations
 const cards = document.querySelectorAll('.feature-card, .product-card, .step, .info-card');
+
+// On mobile, make elements visible immediately without animation
+const isMobile = window.innerWidth < 768;
+
 cards.forEach((card, index) => {
-    card.classList.add('fade-in-up');
-    card.style.transitionDelay = `${index * 0.1}s`;
-    observer.observe(card);
+    if (isMobile) {
+        // Skip animations on mobile - show immediately
+        card.classList.add('visible');
+    } else {
+        // Apply animations on desktop
+        card.classList.add('fade-in-up');
+        card.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(card);
+    }
 });
 
 // ========================================
